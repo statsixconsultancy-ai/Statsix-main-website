@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+  --font-display: "General Sans", "Geist", ui-sans-serif, sans-serif;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --color-paper: #f5f3ee;
+  --color-coral: #ff6a3d;
+  --color-blue: #2e6bff;
+  --color-violet: #8b5cf6;
+  --color-sun: #ffc83d;
+  --color-mint: #12b886;
+  --color-pink: #ff5fa2;
+  --color-ink: #131209;
+  --color-ink-2: #181818;
+  --color-ink-3: #1f1f1f;
+  --color-ink-4: #272727;
+  --color-lime: #c5ee4f;
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html { background: var(--color-paper); color-scheme: light; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { text-wrap: balance; font-family: var(--font-display); letter-spacing: -0.035em; }
+.font-display { font-family: var(--font-display); letter-spacing: -0.035em; }
+.font-serif { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.01em; }
+p, li { text-wrap: pretty; }
+
+::selection { background: var(--color-sun); color: var(--color-ink); }
+
+:focus-visible { outline: 2px solid var(--color-blue); outline-offset: 3px; border-radius: 6px; }
+
+.text-hero {
+  background: linear-gradient(90deg, #000000 0%, #666666 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+.animate-marquee { animation: marquee var(--marquee-speed, 40s) linear infinite; }
+.animate-marquee-reverse { animation: marquee var(--marquee-speed, 40s) linear infinite reverse; }
+.marquee-mask { mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.pulse-dot { animation: pulse-dot 1.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Hero atmosphere ---------- */
+.hero-grid {
+  background-image: linear-gradient(rgba(19,18,9,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(19,18,9,0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+.hero-grid-hot {
+  background-image: linear-gradient(rgba(46,107,255,0.45) 1px, transparent 1px), linear-gradient(90deg, rgba(46,107,255,0.45) 1px, transparent 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 30%), #000, transparent 70%);
+  mask-image: radial-gradient(260px circle at var(--mx, 50%) var(--my, 30%), #000, transparent 70%);
+}
+.orb { position: absolute; border-radius: 9999px; width: 46vw; height: 46vw; max-width: 720px; max-height: 720px; opacity: 0.38; will-change: transform; animation: drift 22s ease-in-out infinite alternate; }
+.orb-blue { background: radial-gradient(circle, #2e6bff 0%, transparent 62%); top: -18%; left: -10%; }
+.orb-coral { background: radial-gradient(circle, #ff6a3d 0%, transparent 62%); top: 4%; right: -14%; animation-duration: 26s; animation-delay: -6s; }
+.orb-violet { background: radial-gradient(circle, #8b5cf6 0%, transparent 62%); top: 38%; left: 28%; opacity: 0.22; animation-duration: 30s; animation-delay: -12s; }
+.orb-sun { background: radial-gradient(circle, #ffc83d 0%, transparent 62%); top: 46%; left: -16%; opacity: 0.3; animation-duration: 24s; animation-delay: -3s; }
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(6vw, -4vw, 0) scale(1.12); }
+  100% { transform: translate3d(-4vw, 3vw, 0) scale(0.94); }
+}
+.grain {
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27160%27 height=%27160%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E");
+}
+
+/* Shine sweep across primary buttons */
+.btn-shine { position: relative; overflow: hidden; isolation: isolate; }
+.btn-shine::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.28) 50%, transparent 70%);
+  transform: translateX(-120%); animation: shine 4.2s cubic-bezier(0.32, 0.72, 0, 1) infinite;
+}
+@keyframes shine { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+
+/* Travelling border beam */
+@property --beam { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.beam { position: relative; }
+.beam::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: conic-gradient(from var(--beam), transparent 0 62%, #2e6bff 75%, #ff6a3d 88%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: beam-spin 4s linear infinite;
+}
+@keyframes beam-spin { to { --beam: 360deg; } }
+
+@keyframes caret { 50% { opacity: 0; } }
+.caret { display: inline-block; width: 6px; height: 1em; margin-left: 2px; vertical-align: -2px; background: currentColor; animation: caret 1s steps(1) infinite; }
+
+@keyframes scroll-dot { 0% { transform: translateY(0); opacity: 1; } 80% { transform: translateY(12px); opacity: 0; } 100% { opacity: 0; } }
+.scroll-dot { animation: scroll-dot 1.8s cubic-bezier(0.32, 0.72, 0, 1) infinite; }
+
+/* Bento: beams travel from each module into the core */
+.beam-dash { animation: beam-dash 2.4s linear infinite; transition: opacity 0.6s; }
+@keyframes beam-dash { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+/* Bento: documents ride through the agent */
+.conveyor { animation: conveyor 4s linear infinite; }
+@keyframes conveyor { from { left: -12%; } to { left: 104%; } }
+.conveyor-icon { animation: conveyor-icon 4s linear infinite; animation-delay: inherit; }
+@keyframes conveyor-icon { 0%, 48% { color: rgba(19,18,9,0.35); } 52%, 100% { color: #2e6bff; } }
