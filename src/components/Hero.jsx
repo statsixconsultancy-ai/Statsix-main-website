@@ -6,6 +6,7 @@ import {
 } from '@phosphor-icons/react'
 import { Magnet, Eyebrow, ease } from './ui'
 import { Dashboard } from './Dashboard'
+import { submitForm } from '../lib/submit'
 
 /* =====================================================================
    Build canvas: one real workflow STAT6 ships, running live.
@@ -369,36 +370,46 @@ export default function Hero() {
 function WaitlistForm() {
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState('')
+  const [name, setName] = useState('')
   const onSubmit = async (e) => {
     e.preventDefault()
-    const email = new FormData(e.currentTarget).get('email') || ''
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-      setError('Enter a valid work email, like priya@company.com.')
-      return
-    }
+    const form = new FormData(e.currentTarget)
+    const email = String(form.get('email') || '').trim()
+    const fullName = String(form.get('name') || '').trim()
+    if (!fullName) return setError('Please enter your name.')
+    if (!/^[^s@]+@[^s@]+.[^s@]{2,}$/.test(email)) return setError('Enter a valid work email, like priya@company.com.')
     setError('')
     setStatus('loading')
-    // TODO: send to your waitlist provider. Simulated for now.
-    await new Promise((r) => setTimeout(r, 1200))
-    setStatus('done')
+    try {
+      await submitForm('waitlist', { name: fullName, email })
+      setName(fullName.split(' ')[0])
+      setStatus('done')
+    } catch {
+      setStatus('idle')
+      setError('We could not add you. Please try again, or email aaru@statsix.com.')
+    }
   }
   if (status === 'done') {
     return (
-      <p className="flex items-center justify-center gap-2 rounded-full bg-mint/10 px-5 py-3 text-sm font-medium text-mint">
-        <CheckCircle weight="fill" size={18} /> You are on the list. We will email you before launch.
+      <p className="mx-auto flex w-max max-w-full items-center justify-center gap-2 rounded-full bg-mint/10 px-5 py-3 text-sm font-medium text-mint">
+        <CheckCircle weight="fill" size={18} /> You are on the list{name ? `, ${name}` : ''}. We will email you before launch.
       </p>
     )
   }
+  const field = 'min-w-0 flex-1 rounded-full bg-transparent px-4 py-2.5 text-base outline-none placeholder:text-ink/35'
   return (
-    <form noValidate onSubmit={onSubmit} className="mx-auto w-full max-w-md">
-      <div className={`flex items-center gap-2 rounded-full border bg-white p-1.5 pl-5 transition-colors duration-700 ease-fluid focus-within:border-ink/40 ${error ? 'border-red-400' : 'border-black/10'}`}>
+    <form noValidate onSubmit={onSubmit} className="mx-auto w-full max-w-xl">
+      <div className={`flex flex-col gap-1.5 rounded-3xl border bg-white p-1.5 transition-colors duration-700 ease-fluid focus-within:border-ink/40 sm:flex-row sm:items-center sm:rounded-full ${error ? 'border-red-400' : 'border-black/10'}`}>
+        <label htmlFor="waitlist-name" className="sr-only">Your name</label>
+        <input id="waitlist-name" name="name" autoComplete="name" placeholder="Your name" className={field} />
+        <span aria-hidden className="hidden h-6 w-px bg-black/10 sm:block" />
         <label htmlFor="waitlist-email" className="sr-only">Work email</label>
-        <input id="waitlist-email" name="email" type="email" placeholder="you@company.com" aria-invalid={!!error} className="min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-ink/30" />
+        <input id="waitlist-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" aria-invalid={!!error} className={field} />
         <button type="submit" disabled={status === 'loading'} className="shrink-0 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-all duration-700 ease-fluid hover:bg-blue active:scale-[0.98] disabled:opacity-70">
           {status === 'loading' ? 'Joining…' : 'Join the waitlist'}
         </button>
       </div>
-      {error && <p className="mt-2 flex items-center justify-center gap-1 text-sm text-red-500"><WarningCircle /> {error}</p>}
+      {error && <p className="mt-2 flex items-center justify-center gap-1 text-sm text-red-600" role="alert"><WarningCircle /> {error}</p>}
     </form>
   )
 }

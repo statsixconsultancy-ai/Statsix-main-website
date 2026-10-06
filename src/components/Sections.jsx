@@ -5,6 +5,7 @@ import {
   MapTrifold, Hammer, Pulse, CheckCircle, WarningCircle,
 } from '@phosphor-icons/react'
 import { BrandMark } from './Logos'
+import EnquiryForm from './EnquiryForm'
 import { Eyebrow, Reveal, SpotlightCard, CountUp, VelocityText, Magnet, btnPrimary, ease } from './ui'
 
 /* ---------- Client strip ---------- */
@@ -92,106 +93,30 @@ export function FAQ() {
 }
 
 /* ---------- Contact / final CTA ---------- */
-const needs = ['Business management system', 'AI agents or automation', 'Web software', 'Website', 'SEO, GEO and AEO', 'Not sure yet']
-
 export function Contact() {
-  const [status, setStatus] = useState('idle') // idle | loading | done | error
-  const [errors, setErrors] = useState({})
-
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    const data = Object.fromEntries(new FormData(e.currentTarget))
-    const next = {}
-    if (!data.name?.trim()) next.name = 'Please enter your name.'
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email || '')) next.email = 'Enter a valid work email, like priya@company.com.'
-    if (!data.need) next.need = 'Pick what you need help with.'
-    setErrors(next)
-    if (Object.keys(next).length) return
-    setStatus('loading')
-    // TODO: connect to your CRM or form endpoint. Simulated for now.
-    await new Promise((r) => setTimeout(r, 1400))
-    setStatus('done')
-  }
-
-  const field = 'mt-2 w-full rounded-xl border bg-paper px-4 py-3 text-base text-ink placeholder:text-ink/30 outline-none transition-all duration-700 ease-fluid focus:border-blue focus:bg-white'
-
   return (
-    <section id="contact" className="px-4 py-32 md:px-8">
-      <div className="mx-auto grid max-w-7xl gap-12 overflow-hidden rounded-[2rem] border border-black/10 bg-white p-8 md:p-16 lg:grid-cols-2">
-        <Reveal>
-          <Eyebrow tone={5}>Start a project</Eyebrow>
-          <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+    <section id="contact" className="px-4 py-24 md:px-8 md:py-32">
+      <div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-black/10 bg-white p-6 md:p-12 lg:grid-cols-12 lg:gap-14">
+        <Reveal className="lg:col-span-5">
+          <Eyebrow>Start a project</Eyebrow>
+          <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
             Let us build what your business actually needs
           </h2>
           <p className="mt-6 text-lg text-ink/60">
-            Book a free 30 minute strategy call. You leave with a rough scope and a price range, whether or not you work with us.
+            Tell us about your project. You get a reply within one business day with next steps, a rough scope and a price range,
+            whether or not you work with us.
           </p>
           <ul className="mt-8 space-y-3 text-ink/70">
             {['Fixed price after mapping, never hourly', 'You own all code and IP', 'Reply within one business day'].map((t) => (
               <li key={t} className="flex items-center gap-3"><CheckCircle weight="fill" className="text-mint" /> {t}</li>
             ))}
           </ul>
+          <p className="mt-8 text-sm text-ink/55">
+            Prefer email? <a href="mailto:aaru@statsix.com" className="font-medium text-ink underline underline-offset-4">aaru@statsix.com</a>
+          </p>
         </Reveal>
-
-        <Reveal delay={0.1}>
-          {status === 'done' ? (
-            <div className="flex h-full flex-col items-start justify-center rounded-3xl border border-mint/30 bg-mint/5 p-8">
-              <CheckCircle size={40} weight="duotone" className="text-mint" />
-              <h3 className="mt-6 text-3xl font-semibold tracking-tight">Request received</h3>
-              <p className="mt-3 text-ink/60">A STAT6 lead will email you within one business day with times for your strategy call.</p>
-              <button type="button" onClick={() => setStatus('idle')} className="mt-8 text-sm font-medium text-blue underline-offset-4 hover:underline">
-                Send another request
-              </button>
-            </div>
-          ) : (
-            <form noValidate onSubmit={onSubmit} className="space-y-5" aria-busy={status === 'loading'}>
-              {[
-                ['name', 'Your name', 'Priya Raman', 'text'],
-                ['email', 'Work email', 'priya@harbourline.co', 'email'],
-                ['company', 'Company (optional)', 'Harbourline Logistics', 'text'],
-              ].map(([n, label, ph, type]) => (
-                <label key={n} className="block text-sm font-medium text-ink/80">
-                  {label}
-                  <input
-                    name={n}
-                    type={type}
-                    placeholder={ph}
-                    aria-invalid={!!errors[n]}
-                    className={`${field} ${errors[n] ? 'border-red-400/70' : 'border-black/10'}`}
-                  />
-                  {errors[n] && (
-                    <span className="mt-2 flex items-center gap-1 text-sm text-red-300"><WarningCircle /> {errors[n]}</span>
-                  )}
-                </label>
-              ))}
-              <fieldset>
-                <legend className="text-sm font-medium text-ink/80">What do you need?</legend>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {needs.map((n) => (
-                    <label key={n} className="cursor-pointer">
-                      <input type="radio" name="need" value={n} className="peer sr-only" />
-                      <span className="block rounded-full border border-black/10 px-4 py-2 text-sm text-ink/70 transition-all duration-700 ease-fluid hover:border-black/30 peer-checked:border-ink peer-checked:bg-ink peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-blue">
-                        {n}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-                {errors.need && <span className="mt-2 flex items-center gap-1 text-sm text-red-300"><WarningCircle /> {errors.need}</span>}
-              </fieldset>
-              <Magnet strength={0.15}>
-                <button type="submit" disabled={status === 'loading'} className={`${btnPrimary} disabled:cursor-wait disabled:opacity-70`}>
-                  {status === 'loading' ? (
-                    <>
-                      <span className="h-4 w-28 animate-pulse rounded bg-white/30" />
-                      <span className="sr-only">Sending</span>
-                    </>
-                  ) : (
-                    <>Book a strategy call <ArrowRight weight="bold" /></>
-                  )}
-                </button>
-              </Magnet>
-            </form>
-          )}
+        <Reveal delay={0.1} className="lg:col-span-7">
+          <EnquiryForm />
         </Reveal>
       </div>
     </section>
