@@ -61,7 +61,7 @@ export function SplitText({ lines, className = '', delay = 0, stagger = 0.06, ac
 }
 
 /* ReactBits SpotlightCard: a soft light follows the pointer */
-export function SpotlightCard({ children, className = '', color = 'rgba(46,107,255,0.10)' }) {
+export function SpotlightCard({ children, className = '', color = 'rgba(180,160,245,0.18)' }) {
   const ref = useRef(null)
   const onMove = (e) => {
     const r = ref.current.getBoundingClientRect()
@@ -72,7 +72,7 @@ export function SpotlightCard({ children, className = '', color = 'rgba(46,107,2
     <div
       ref={ref}
       onMouseMove={onMove}
-      className={`group relative overflow-hidden rounded-3xl border border-black/10 bg-white transition-all duration-700 ease-fluid hover:border-black/20 ${className}`}
+      className={`group relative overflow-hidden rounded-[28px] card-soft card-soft-hover ${className}`}
     >
       <div
         aria-hidden
@@ -178,7 +178,12 @@ export function Magnet({ children, strength = 0.25, className = '' }) {
   )
 }
 
-const dots = ['bg-blue']
+const dots = ['bg-pink', 'bg-sun', 'bg-blue', 'bg-mint', 'bg-violet', 'bg-pink']
+
+/* The STAT6 name, always set in the logo typeface */
+export function Brand({ children = 'STAT6', className = '' }) {
+  return <span className={`font-brand ${className}`}>{children}</span>
+}
 export function Eyebrow({ children, tone = 0 }) {
   return (
     <p className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-1 font-mono text-xs uppercase tracking-widest text-ink/60">
@@ -189,7 +194,7 @@ export function Eyebrow({ children, tone = 0 }) {
 }
 
 export const btnPrimary =
-  'inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-base font-semibold text-white transition-all duration-700 ease-fluid hover:bg-blue hover:scale-[1.03] active:scale-[0.98]'
+  'inline-flex items-center gap-2 rounded-full bg-pink px-5 py-3 text-base font-semibold text-ink transition-all duration-700 ease-fluid hover:bg-pinkdeep hover:text-ink hover:scale-[1.03] active:scale-[0.98]'
 export const btnGhost =
   'inline-flex items-center gap-2 rounded-full border border-black/15 px-5 py-3 text-base font-semibold text-ink transition-all duration-700 ease-fluid hover:bg-black/10 active:scale-[0.98]'
 

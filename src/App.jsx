@@ -3,6 +3,7 @@ import { MotionConfig } from 'motion/react'
 import Lenis from 'lenis'
 import Nav from './components/Nav'
 import Hero, { ProductReveal } from './components/Hero'
+import InvoiceTool from './components/InvoiceTool'
 // Below the fold sections load in the background so the hero paints fast
 const Services = lazy(() => import('./components/Services'))
 const CaseStudies = lazy(() => import('./components/CaseStudies'))
@@ -55,6 +56,7 @@ export default function App() {
         <Hero />
         <ClientStrip />
         <ProductReveal />
+        <InvoiceTool />
         <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
           <Services />
           <CaseStudies />

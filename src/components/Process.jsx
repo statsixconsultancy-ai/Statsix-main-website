@@ -24,17 +24,17 @@ function MapVisual({ on }) {
   return (
     <div className="relative flex h-full flex-col justify-center">
       <div className="absolute bottom-8 left-[27px] top-8 w-px bg-black/10">
-        <motion.div className="w-full origin-top bg-blue" animate={{ height: `${(Math.min(n, journey.length - 1) / (journey.length - 1)) * 100}%` }} transition={{ duration: 0.8, ease }} />
+        <motion.div className="w-full origin-top bg-violet" animate={{ height: `${(Math.min(n, journey.length - 1) / (journey.length - 1)) * 100}%` }} transition={{ duration: 0.8, ease }} />
       </div>
       <ol className="relative space-y-3">
         {journey.map(([Icon, title, sub, when], i) => {
           const done = n > i
           const now = n === i
           return (
-            <li key={title} className={`flex items-center gap-4 rounded-2xl border p-3 transition-all duration-500 ${now ? 'border-blue/40 bg-blue/5 shadow-sm' : done ? 'border-black/5 bg-white' : 'border-black/5 bg-white opacity-50'}`}>
-              <span className={`relative grid size-8 shrink-0 place-items-center rounded-full transition-colors duration-500 ${done ? 'bg-blue text-white' : now ? 'bg-white text-blue ring-2 ring-blue' : 'bg-black/5 text-ink/55'}`}>
+            <li key={title} className={`flex items-center gap-4 rounded-2xl border p-3 transition-all duration-500 ${now ? 'border-violet/40 bg-violet/5 shadow-sm' : done ? 'border-black/5 bg-white' : 'border-black/5 bg-white opacity-50'}`}>
+              <span className={`relative grid size-8 shrink-0 place-items-center rounded-full transition-colors duration-500 ${done ? 'bg-violet text-ink' : now ? 'bg-white text-violetdeep ring-2 ring-violet' : 'bg-black/5 text-ink/55'}`}>
                 {done ? <Check size={14} weight="bold" /> : <Icon size={15} weight="fill" />}
-                {now && <span className="absolute inset-0 animate-ping rounded-full ring-2 ring-blue/40" />}
+                {now && <span className="absolute inset-0 animate-ping rounded-full ring-2 ring-violet/40" />}
               </span>
               <span className="min-w-0 flex-1">
                 <span className="block text-sm font-semibold">{title}</span>
@@ -60,17 +60,17 @@ function BuildVisual({ on }) {
   return (
     <div className="flex h-full flex-col justify-center gap-5">
       <div className="h-1.5 overflow-hidden rounded-full bg-black/10">
-        <motion.div className="h-full rounded-full bg-blue" animate={{ width: `${(Math.min(n, releases.length) / releases.length) * 100}%` }} transition={{ duration: 0.6, ease }} />
+        <motion.div className="h-full rounded-full bg-violet" animate={{ width: `${(Math.min(n, releases.length) / releases.length) * 100}%` }} transition={{ duration: 0.6, ease }} />
       </div>
       <div className="grid grid-cols-3 gap-3">
         {releases.map((r, i) => (
           <div
             key={r}
-            className={`rounded-xl border p-3 transition-all duration-500 ${n > i ? 'border-blue/30 bg-blue/5' : 'border-black/10 bg-black/[0.02]'}`}
+            className={`rounded-xl border p-3 transition-all duration-500 ${n > i ? 'border-violet/30 bg-violet/5' : 'border-black/10 bg-black/[0.02]'}`}
           >
             <p className="font-mono text-xs text-ink/50">Sprint {i + 1}</p>
             <p className="mt-1 flex items-center justify-between text-lg font-semibold">
-              {r} {n > i && <Check size={16} weight="bold" className="text-blue" />}
+              {r} {n > i && <Check size={16} weight="bold" className="text-violetdeep" />}
             </p>
           </div>
         ))}
@@ -87,14 +87,14 @@ function AutomateVisual() {
         <div className="absolute inset-x-10 top-1/2 h-px -translate-y-1/2 bg-black/15" />
         {[[EnvelopeSimple, 'Inbox'], [Robot, 'AI agent'], [Database, 'Your ERP']].map(([Icon, l], i) => (
           <div key={l} className="relative flex flex-col items-center gap-2">
-            <span className={`grid size-16 place-items-center rounded-2xl ${i === 1 ? 'bg-blue text-white' : 'border border-black/10 bg-white text-ink'}`}>
+            <span className={`grid size-16 place-items-center rounded-2xl ${i === 1 ? 'bg-violet text-ink' : 'border border-black/10 bg-white text-ink'}`}>
               <Icon size={26} weight="duotone" />
             </span>
             <span className="text-xs text-ink/60">{l}</span>
           </div>
         ))}
         {[0, 1, 2].map((k) => (
-          <span key={k} className="conveyor absolute top-[32px] size-2 -translate-y-1/2 rounded-full bg-blue shadow-[0_0_12px_2px_rgba(46,107,255,0.5)]" style={{ animationDelay: `${k * -1.33}s` }} />
+          <span key={k} className="conveyor absolute top-[32px] size-2 -translate-y-1/2 rounded-full bg-violet shadow-[0_0_12px_2px_rgba(169,138,240,0.5)]" style={{ animationDelay: `${k * -1.33}s` }} />
         ))}
       </div>
       <div className="grid grid-cols-3 gap-3 text-center">
@@ -136,13 +136,13 @@ function GrowVisual({ on }) {
       <div className="relative min-h-[90px] flex-1 rounded-xl border border-black/5 bg-paper p-3">
         <p className="text-[11px] text-ink/50">Revenue vs headcount, 18 months</p>
         <svg viewBox="0 0 400 120" className="absolute inset-x-3 bottom-3 h-[70%] w-[calc(100%-24px)] overflow-visible" preserveAspectRatio="none">
-          <motion.path d="M0 112 C 80 110, 140 100, 200 82 S 300 36, 400 6" fill="none" stroke="#2e6bff" strokeWidth="3" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+          <motion.path d="M0 112 C 80 110, 140 100, 200 82 S 300 36, 400 6" fill="none" stroke="#a98af0" strokeWidth="3" strokeLinecap="round" vectorEffect="non-scaling-stroke"
             initial={{ pathLength: 0 }} animate={on ? { pathLength: 1 } : {}} transition={{ duration: 2, ease, delay: 0.4 }} />
           <motion.path d="M0 100 C 100 99, 200 97, 400 92" fill="none" stroke="rgba(19,18,9,0.3)" strokeWidth="2" strokeDasharray="5 5" vectorEffect="non-scaling-stroke"
             initial={{ pathLength: 0 }} animate={on ? { pathLength: 1 } : {}} transition={{ duration: 2, ease, delay: 0.4 }} />
         </svg>
         <motion.span
-          className="absolute right-3 top-3 rounded-full bg-blue px-2.5 py-1 text-xs font-semibold text-white"
+          className="absolute right-3 top-3 rounded-full bg-violet px-2.5 py-1 text-xs font-semibold text-ink"
           initial={{ opacity: 0, scale: 0.7 }} animate={on ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.6, ease, delay: 2.2 }}
         >
           10× revenue · same team
@@ -164,7 +164,7 @@ function StepCard({ s }) {
   const on = useInView(ref, { amount: 0.5 })
   const { Visual } = s
   return (
-    <article ref={ref} className="grid shrink-0 gap-8 rounded-[32px] border border-black/10 bg-paper p-8 md:p-10 lg:h-[64vh] lg:w-[min(82vw,1040px)] lg:grid-cols-2">
+    <article ref={ref} className="grid shrink-0 gap-8 rounded-[32px] card-soft p-8 md:p-10 lg:h-[64vh] lg:w-[min(82vw,1040px)] lg:grid-cols-2">
       <div className="flex flex-col">
         <div className="flex items-baseline justify-between">
           {s.n}
@@ -175,12 +175,12 @@ function StepCard({ s }) {
         <ul className="mt-6 flex flex-wrap gap-2">
           {s.get.map((g) => (
             <li key={g} className="flex items-center gap-1.5 rounded-full border border-black/15 px-3 py-1 text-sm text-ink/80">
-              <Check size={14} weight="bold" className="text-blue" /> {g}
+              <Check size={14} weight="bold" className="text-violetdeep" /> {g}
             </li>
           ))}
         </ul>
       </div>
-      <div className="min-h-[260px] rounded-2xl border border-black/5 bg-white p-6">
+      <div className="min-h-[260px] rounded-[22px] bg-paper p-6">
         <Visual on={on} />
       </div>
     </article>
@@ -210,12 +210,12 @@ export function Process() {
   const counter = useTransform(scrollYProgress, (p) => `0${Math.min(4, Math.max(1, Math.ceil(((p - 0.05) / 0.9) * 4)))}`)
 
   return (
-    <section id="process" ref={wrap} className="relative border-y border-black/[0.06] bg-white text-ink lg:h-[280vh]">
+    <section id="process" ref={wrap} className="relative text-ink lg:h-[280vh]">
       <div className="flex flex-col gap-10 py-24 lg:sticky lg:top-0 lg:h-screen lg:justify-center lg:overflow-hidden lg:py-0">
         <div className="mx-auto flex w-full max-w-[1400px] flex-col gap-6 px-4 md:px-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-black/15 px-3 py-1 font-mono text-xs uppercase tracking-widest text-ink/60">
-              <span className="size-2 rounded-full bg-blue" /> How we work
+              <span className="size-2 rounded-full bg-violet" /> How we work
             </p>
             <h2 className="mt-6 max-w-3xl text-4xl font-medium md:text-6xl">
               From first call to 10× growth
@@ -227,7 +227,7 @@ export function Process() {
               <span>Scroll</span>
             </div>
             <div className="mt-2 h-px bg-black/15">
-              <motion.div className="h-px origin-left bg-blue" style={{ scaleX: bar }} />
+              <motion.div className="h-px origin-left bg-violet" style={{ scaleX: bar }} />
             </div>
           </div>
         </div>

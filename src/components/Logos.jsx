@@ -1,7 +1,7 @@
 // Placeholder client logomarks. Swap for real SVG logos when you have permission to use them.
 const marks = {
   harbourline: {
-    bg: '#2e6bff',
+    bg: '#8bb8f4',
     svg: (
       <g fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round">
         <path d="M6 13c2.5-2 5-2 7.5 0s5 2 7.5 0" />
@@ -11,7 +11,7 @@ const marks = {
     ),
   },
   verdant: {
-    bg: '#12b886',
+    bg: '#7fd4a8',
     svg: (
       <g fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M7 20c0-8 5-13 14-13 0 9-5 13-11 13H7z" />
@@ -20,7 +20,7 @@ const marks = {
     ),
   },
   monarch: {
-    bg: '#22332a',
+    bg: '#7a9a86',
     svg: (
       <text x="13.5" y="18.5" textAnchor="middle" fontFamily="Instrument Serif, serif" fontSize="14" fill="#efe6d2">
         M&amp;R
@@ -28,7 +28,7 @@ const marks = {
     ),
   },
   kiln: {
-    bg: '#ff6a3d',
+    bg: '#f4a3c1',
     svg: (
       <g fill="none" stroke="#fff" strokeWidth="2.2" strokeLinejoin="round">
         <path d="M7 21V12a6.5 6.5 0 0 1 13 0v9z" />
@@ -37,7 +37,7 @@ const marks = {
     ),
   },
   northpaw: {
-    bg: '#ffc83d',
+    bg: '#f6d365',
     svg: (
       <g fill="#131209">
         <ellipse cx="13.5" cy="17" rx="4.6" ry="3.8" />
@@ -49,7 +49,7 @@ const marks = {
     ),
   },
   lumen: {
-    bg: '#8b5cf6',
+    bg: '#b69af0',
     svg: (
       <g fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round">
         <path d="M8 14a5.5 5.5 0 0 1 11 0" />

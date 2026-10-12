@@ -6,7 +6,7 @@ import { Lightning } from '@phosphor-icons/react'
 
 export function BrowserFrame({ url, children }) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_40px_80px_-30px_rgba(19,18,9,0.35)]">
+    <div className="overflow-hidden rounded-[22px] card-soft">
       <div className="flex items-center gap-2 border-b border-black/[0.06] bg-[#f7f6f2] px-4 py-3">
         <span className="size-2.5 rounded-full bg-black/10" />
         <span className="size-2.5 rounded-full bg-black/10" />
@@ -19,14 +19,14 @@ export function BrowserFrame({ url, children }) {
 }
 
 const feedPool = [
-  ['Reconciled 42 invoices', 'text-blue'],
+  ['Reconciled 42 invoices', 'text-bluedeep'],
   ['Flagged late PO #7714', 'text-amber-600'],
-  ['Drafted 18 customer replies', 'text-blue'],
-  ['Restocked SKU K-220', 'text-mint'],
-  ['Synced 311 orders to ERP', 'text-blue'],
+  ['Drafted 18 customer replies', 'text-violetdeep'],
+  ['Restocked SKU K-220', 'text-mintdeep'],
+  ['Synced 311 orders to ERP', 'text-mintdeep'],
   ['Chased 6 overdue invoices', 'text-amber-600'],
-  ['Booked 4 carrier slots', 'text-blue'],
-  ['Updated cash forecast', 'text-mint'],
+  ['Booked 4 carrier slots', 'text-sundeep'],
+  ['Updated cash forecast', 'text-mintdeep'],
 ]
 
 /* New agent events slide in at the top every few seconds */

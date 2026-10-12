@@ -87,16 +87,16 @@ function Kpi({ label, children, delta, tone, spark, active, delay }) {
 }
 
 const agents = [
-  { name: 'Invoice reconciler', color: '#2e6bff', dur: 5.5 },
-  { name: 'Carrier booking', color: '#12b886', dur: 7.2 },
-  { name: 'Support drafts', color: '#8b5cf6', dur: 4.4 },
+  { name: 'Invoice reconciler', color: '#6aa5ee', dur: 5.5 },
+  { name: 'Carrier booking', color: '#5cc596', dur: 7.2 },
+  { name: 'Support drafts', color: '#a98af0', dur: 4.4 },
 ]
 
 const toasts = [
-  ['PO-7714 approved by Priya', '#2e6bff'],
-  ['Cash forecast refreshed', '#12b886'],
-  ['42 invoices reconciled', '#b45309'],
-  ['Late shipment rerouted', '#8b5cf6'],
+  ['PO-7714 approved by Priya', '#6aa5ee'],
+  ['Cash forecast refreshed', '#5cc596'],
+  ['42 invoices reconciled', '#c99a1a'],
+  ['Late shipment rerouted', '#a98af0'],
 ]
 
 export function Dashboard() {
@@ -158,7 +158,7 @@ export function Dashboard() {
       {/* Sidebar */}
       <aside className="hidden w-[20%] shrink-0 flex-col border-r border-black/5 p-3 sm:flex">
         <div className="mb-4 flex items-center gap-2 px-2">
-          <span className="grid size-5 place-items-center rounded-md bg-blue text-[10px] font-bold text-white">S6</span>
+          <span className="grid size-5 place-items-center rounded-md bg-blue text-[10px] font-bold text-ink">S6</span>
           <span className="truncate text-xs font-semibold">Operations</span>
         </div>
         <div className="relative flex flex-col gap-0.5">
@@ -170,7 +170,7 @@ export function Dashboard() {
               )}
               <Icon size={12} weight={i === 0 ? 'fill' : 'regular'} className="relative" />
               <span className="relative">{l}</span>
-              {l === 'Agents' && <span className="relative ml-auto rounded-full bg-blue/10 px-1.5 text-[9px] text-blue">6</span>}
+              {l === 'Agents' && <span className="relative ml-auto rounded-full bg-blue/10 px-1.5 text-[9px] text-bluedeep">6</span>}
             </div>
           ))}
         </div>
@@ -194,7 +194,7 @@ export function Dashboard() {
             <MagnifyingGlass size={10} /> Ask your business anything
             <kbd className="rounded bg-black/[0.06] px-1 text-[9px]">⌘K</kbd>
           </div>
-          <div className="flex items-center gap-1.5 rounded-full bg-mint/10 px-2 py-1 text-[10px] text-mint">
+          <div className="flex items-center gap-1.5 rounded-full bg-mint/10 px-2 py-1 text-[10px] text-mintdeep">
             <span className="relative flex size-1.5">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-blue opacity-70" />
               <span className="relative size-1.5 rounded-full bg-blue" />
@@ -204,13 +204,13 @@ export function Dashboard() {
         </div>
 
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-          <Kpi label="Revenue MTD" delta="+12.7% vs Sept" tone="#2e6bff" active={active} delay={0.1} spark="M0 20 C 10 18, 18 14, 28 15 S 46 8, 56 9 S 72 3, 80 2">
+          <Kpi label="Revenue MTD" delta="+12.7% vs Sept" tone="#6aa5ee" active={active} delay={0.1} spark="M0 20 C 10 18, 18 14, 28 15 S 46 8, 56 9 S 72 3, 80 2">
             $<Roll value={revenue} />
           </Kpi>
           <Kpi label="Open orders" delta="214 ship today" tone="#7cc4ff" active={active} delay={0.2} spark="M0 14 C 10 18, 20 8, 30 12 S 50 16, 60 8 S 74 10, 80 6">
             <Roll value={orders} />
           </Kpi>
-          <Kpi label="Cash runway" delta="Updated 06:00" tone="#ffc83d" active={active} delay={0.3} spark="M0 18 C 14 17, 24 15, 36 13 S 60 9, 80 7">
+          <Kpi label="Cash runway" delta="Updated 06:00" tone="#f6d365" active={active} delay={0.3} spark="M0 18 C 14 17, 24 15, 36 13 S 60 9, 80 7">
             19.4 mo
           </Kpi>
           <Kpi label="Hours automated" delta="+318 this week" tone="#ff9ac6" active={active} delay={0.4} spark="M0 22 C 12 20, 22 18, 32 14 S 54 10, 64 6 S 76 3, 80 2">
@@ -248,8 +248,8 @@ export function Dashboard() {
                 ))}
                 <defs>
                   <linearGradient id="dash-fill" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#2e6bff" stopOpacity="0.28" />
-                    <stop offset="100%" stopColor="#2e6bff" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#6aa5ee" stopOpacity="0.28" />
+                    <stop offset="100%" stopColor="#6aa5ee" stopOpacity="0" />
                   </linearGradient>
                 </defs>
                 <motion.path
@@ -266,13 +266,13 @@ export function Dashboard() {
                   initial={{ pathLength: 0 }}
                   animate={{ d: smooth(actual), pathLength: active ? 1 : 0 }}
                   transition={{ d: { duration: 1.1, ease }, pathLength: { duration: 2, ease, delay: 0.4 } }}
-                  fill="none" stroke="#2e6bff" strokeWidth="2.5" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+                  fill="none" stroke="#6aa5ee" strokeWidth="2.5" strokeLinecap="round" vectorEffect="non-scaling-stroke"
                 />
               </svg>
               {/* Crosshair */}
               <motion.div style={{ left }} className="pointer-events-none absolute inset-y-0 w-px bg-white/15" />
               <motion.div style={{ left, top }} className="pointer-events-none absolute">
-                <span className="absolute -left-1.5 -top-1.5 size-3 rounded-full border-2 border-white bg-blue shadow-[0_0_12px_rgba(46,107,255,0.6)]" />
+                <span className="absolute -left-1.5 -top-1.5 size-3 rounded-full border-2 border-white bg-blue shadow-[0_0_12px_rgba(106,165,238,0.6)]" />
                 <motion.span className="absolute -top-8 left-2 whitespace-nowrap rounded-md bg-ink px-1.5 py-0.5 text-[10px] font-semibold text-white shadow-lg">
                   {label}
                 </motion.span>
@@ -307,7 +307,7 @@ export function Dashboard() {
               </div>
             </div>
             <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-lg border border-black/5 bg-white p-3">
-              <p className="mb-2 flex items-center gap-1 text-[11px] text-ink/50"><Lightning size={10} weight="fill" className="text-blue" /> Live activity</p>
+              <p className="mb-2 flex items-center gap-1 text-[11px] text-ink/50"><Lightning size={10} weight="fill" className="text-bluedeep" /> Live activity</p>
               <LiveFeed />
             </div>
           </div>

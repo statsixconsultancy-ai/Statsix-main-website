@@ -289,7 +289,7 @@ export function MockSearch() {
                   initial={{ opacity: 0, x: 10 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, ease, delay: 1.8 + i * 0.15 }}
-                  className={`rounded-[1cqw] bg-white p-[1cqw] ${hot ? 'ring-[0.3cqw] ring-[#ff6a3d]' : ''}`}
+                  className={`rounded-[1cqw] bg-white p-[1cqw] ${hot ? 'ring-[0.3cqw] ring-[#f08fb4]' : ''}`}
                   style={hot && done ? { boxShadow: '0 0 0 0.6cqw rgba(255,106,61,0.18)' } : undefined}
                 >
                   <p className="flex items-center gap-[0.6cqw] text-[#5f6368]" style={{ fontSize: '1.1cqw' }}>
@@ -374,9 +374,9 @@ const shipments = [
 ]
 const statusTone = {
   Delivered: 'bg-[#e8f5ee] text-[#15803d]',
-  'In transit': 'bg-[#eaf1ff] text-[#2e6bff]',
+  'In transit': 'bg-[#eaf1ff] text-[#6aa5ee]',
   Booked: 'bg-black/[0.05] text-black/60',
-  'At risk': 'bg-[#fff4e0] text-[#b45309]',
+  'At risk': 'bg-[#fff4e0] text-[#c99a1a]',
   Rerouted: 'bg-[#e8f5ee] text-[#15803d]',
 }
 
@@ -400,7 +400,7 @@ export function MockOps() {
         {/* App bar */}
         <div className="flex items-center gap-[2cqw] border-b border-black/[0.07] px-[2cqw] py-[1.1cqw]">
           <span className="flex items-center gap-[0.8cqw] font-semibold">
-            <span className="grid size-[2.4cqw] place-items-center rounded-[0.6cqw] bg-[#2e6bff] text-white" style={{ fontSize: '1.2cqw' }}>H</span>
+            <span className="grid size-[2.4cqw] place-items-center rounded-[0.6cqw] bg-[#6aa5ee] text-white" style={{ fontSize: '1.2cqw' }}>H</span>
             Harbourline OS
           </span>
           <nav className="flex gap-[1.8cqw] text-black/50">
@@ -413,9 +413,9 @@ export function MockOps() {
           </span>
           <span className="relative">
             <Bell size="1.7cqw" className="text-black/50" />
-            {risk && <span className="absolute -right-[0.2cqw] -top-[0.2cqw] size-[0.9cqw] rounded-full bg-[#ff6a3d] ring-2 ring-white" />}
+            {risk && <span className="absolute -right-[0.2cqw] -top-[0.2cqw] size-[0.9cqw] rounded-full bg-[#f08fb4] ring-2 ring-white" />}
           </span>
-          <span className="grid size-[2.4cqw] place-items-center rounded-full bg-[#eaf1ff] font-semibold text-[#2e6bff]" style={{ fontSize: '1cqw' }}>PR</span>
+          <span className="grid size-[2.4cqw] place-items-center rounded-full bg-[#eaf1ff] font-semibold text-[#6aa5ee]" style={{ fontSize: '1cqw' }}>PR</span>
         </div>
 
         <div className="flex min-h-0 flex-1">
@@ -446,7 +446,7 @@ export function MockOps() {
                   className="overflow-visible"
                 >
                   <div className={`relative mt-[1cqw] flex items-center gap-[1cqw] rounded-[0.8cqw] border px-[1.2cqw] py-[0.8cqw] transition-colors duration-500 ${fixed ? 'border-[#bfe5cf] bg-[#effaf3]' : 'border-[#cddcff] bg-[#f3f7ff]'}`}>
-                    {fixed ? <CheckCircle size="1.6cqw" weight="fill" className="shrink-0 text-[#15803d]" /> : <Sparkle size="1.6cqw" weight="fill" className="shrink-0 text-[#2e6bff]" />}
+                    {fixed ? <CheckCircle size="1.6cqw" weight="fill" className="shrink-0 text-[#15803d]" /> : <Sparkle size="1.6cqw" weight="fill" className="shrink-0 text-[#6aa5ee]" />}
                     <span className="min-w-0 flex-1 truncate">
                       {fixed
                         ? <><b>Rerouted HL-40933 via Hull.</b> Carrier and customer notified.</>
@@ -458,7 +458,7 @@ export function MockOps() {
                         <motion.span
                           animate={{ scale: clicked ? [1, 0.92, 1] : 1 }}
                           transition={{ duration: 0.3 }}
-                          className="flex shrink-0 items-center gap-[0.5cqw] rounded-[0.5cqw] bg-[#2e6bff] px-[1cqw] py-[0.4cqw] font-medium text-white"
+                          className="flex shrink-0 items-center gap-[0.5cqw] rounded-[0.5cqw] bg-[#6aa5ee] px-[1cqw] py-[0.4cqw] font-medium text-white"
                         >
                           {working ? <CircleNotch size="1.2cqw" className="animate-spin" /> : null} Approve
                         </motion.span>
@@ -494,7 +494,7 @@ export function MockOps() {
                     key={id}
                     className={`grid grid-cols-[2cqw_1fr_1.3fr_1.5fr_0.9fr_0.9fr_1fr_0.7fr] items-center gap-[1cqw] border-b border-black/[0.05] px-[1cqw] py-[0.75cqw] transition-colors duration-500 ${hot && drawer ? 'bg-[#f3f7ff]' : ''}`}
                   >
-                    <span className={`grid size-[1.2cqw] place-items-center rounded-[0.3cqw] border ${hot && drawer ? 'border-[#2e6bff] bg-[#2e6bff]' : 'border-black/20'}`}>
+                    <span className={`grid size-[1.2cqw] place-items-center rounded-[0.3cqw] border ${hot && drawer ? 'border-[#6aa5ee] bg-[#6aa5ee]' : 'border-black/20'}`}>
                       {hot && drawer && <Check size="0.9cqw" weight="bold" className="text-white" />}
                     </span>
                     <span className="font-mono text-black/70">{id}</span>
@@ -550,8 +550,8 @@ export function MockOps() {
                 {[
                   ['Picked up, Hamburg', '08:12', '#15803d', true],
                   ['Customs cleared', '09:40', '#15803d', true],
-                  ['Delay: A1 closure near Bremen', '10:05', '#b45309', risk],
-                  ['Rerouted via Hull by agent', '10:07', '#2e6bff', fixed],
+                  ['Delay: A1 closure near Bremen', '10:05', '#c99a1a', risk],
+                  ['Rerouted via Hull by agent', '10:07', '#6aa5ee', fixed],
                   ['Approved by Priya R.', '10:07', '#15803d', fixed],
                 ].map(([label, time, color, on]) => (
                   <motion.li

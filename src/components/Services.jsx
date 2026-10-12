@@ -5,7 +5,7 @@ import {
   SquaresFour, Robot, FlowArrow, Code, Trophy, MagnifyingGlass, CheckCircle, CircleNotch,
   EnvelopeSimple, Database, Package, Users, ChartLineUp, Receipt, Warehouse, FileText,
 } from '@phosphor-icons/react'
-import { Eyebrow, Reveal, SpotlightCard, Roll, ease } from './ui'
+import { Eyebrow, Reveal, SpotlightCard, Roll, Brand, ease } from './ui'
 
 function useLoop(active, length, ms) {
   const [i, setI] = useState(0)
@@ -19,12 +19,12 @@ function useLoop(active, length, ms) {
 
 /* ---------- 1. BMS: every module beams into one core ---------- */
 const modules = [
-  { Icon: Users, label: 'CRM', color: '#2e6bff', x: 14, y: 20 },
-  { Icon: Package, label: 'Inventory', color: '#2e6bff', x: 86, y: 20 },
-  { Icon: Receipt, label: 'Billing', color: '#2e6bff', x: 8, y: 56 },
-  { Icon: ChartLineUp, label: 'Reporting', color: '#2e6bff', x: 92, y: 56 },
-  { Icon: Warehouse, label: 'ERP', color: '#2e6bff', x: 24, y: 88 },
-  { Icon: FileText, label: 'HR', color: '#2e6bff', x: 76, y: 88 },
+  { Icon: Users, label: 'CRM', color: '#ef8fb4', x: 14, y: 20 },
+  { Icon: Package, label: 'Inventory', color: '#f6d365', x: 86, y: 20 },
+  { Icon: Receipt, label: 'Billing', color: '#8fbdf5', x: 8, y: 56 },
+  { Icon: ChartLineUp, label: 'Reporting', color: '#6fcf9f', x: 92, y: 56 },
+  { Icon: Warehouse, label: 'ERP', color: '#b69af0', x: 24, y: 88 },
+  { Icon: FileText, label: 'HR', color: '#ef8fb4', x: 76, y: 88 },
 ]
 
 function BmsVisual({ active }) {
@@ -59,9 +59,9 @@ function BmsVisual({ active }) {
         </motion.div>
       ))}
       <div className="absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2">
-        <span className="absolute inset-0 -m-4 animate-ping rounded-3xl bg-blue/10" style={{ animationDuration: '2.4s' }} />
-        <div className="relative grid size-20 place-items-center rounded-3xl bg-ink text-white shadow-[0_20px_40px_-12px_rgba(19,18,9,0.6)]">
-          <SquaresFour size={30} weight="duotone" className="text-lime" />
+        <span className="absolute inset-0 -m-4 animate-ping rounded-3xl bg-violet/10" style={{ animationDuration: '2.4s' }} />
+        <div className="relative grid size-20 place-items-center rounded-3xl bg-pink text-ink shadow-[0_20px_40px_-12px_rgba(240,143,180,0.55)]">
+          <SquaresFour size={30} weight="duotone" className="text-ink" />
         </div>
         <p className="mt-2 whitespace-nowrap text-center font-mono text-[11px] uppercase tracking-widest text-ink/50">One system</p>
       </div>
@@ -88,20 +88,20 @@ function AgentVisual({ active }) {
             key={t}
             animate={{ opacity: state === 'wait' ? 0.4 : 1, x: state === 'run' ? 4 : 0 }}
             transition={{ duration: 0.5, ease }}
-            className={`flex items-center gap-2.5 rounded-xl border px-3 py-2 text-xs transition-colors duration-500 ${state === 'run' ? 'border-blue/30 bg-blue/5' : 'border-black/5 bg-white'}`}
+            className={`flex items-center gap-2.5 rounded-xl border px-3 py-2 text-xs transition-colors duration-500 ${state === 'run' ? 'border-blue/40 bg-blue/10' : 'border-black/5 bg-white'}`}
           >
             <Icon size={14} className="shrink-0 text-ink/50" />
             <span className="truncate">{t}</span>
             <span className="ml-auto shrink-0">
-              {state === 'done' && <CheckCircle size={16} weight="fill" className="text-mint" />}
-              {state === 'run' && <CircleNotch size={16} className="animate-spin text-blue" />}
+              {state === 'done' && <CheckCircle size={16} weight="fill" className="text-mintdeep" />}
+              {state === 'run' && <CircleNotch size={16} className="animate-spin text-bluedeep" />}
             </span>
           </motion.div>
         )
       })}
       <motion.div
         animate={{ opacity: step >= agentSteps.length ? 1 : 0.35 }}
-        className="flex items-center justify-between rounded-xl bg-ink px-3 py-2 text-xs text-white"
+        className="flex items-center justify-between rounded-xl bg-sky px-3 py-2 text-xs text-ink"
       >
         <span>{step > agentSteps.length ? 'Approved by Priya' : 'Waiting for your approval'}</span>
         <span className={`rounded-md px-2 py-0.5 font-semibold ${step > agentSteps.length ? 'bg-mint' : 'bg-white/15'}`}>
@@ -123,8 +123,8 @@ function AutomationVisual({ active }) {
   return (
     <div className="flex h-full flex-col justify-center gap-4">
       <div className="relative h-14 overflow-hidden rounded-xl border border-black/5 bg-black/[0.02]">
-        <div className="absolute inset-y-0 left-1/2 w-12 -translate-x-1/2 bg-blue/10" />
-        <span className="absolute left-1/2 top-1 -translate-x-1/2 font-mono text-[10px] text-blue">agent</span>
+        <div className="absolute inset-y-0 left-1/2 w-12 -translate-x-1/2 bg-violet/10" />
+        <span className="absolute left-1/2 top-1 -translate-x-1/2 font-mono text-[10px] text-bluedeep">agent</span>
         {[0, 1, 2, 3].map((k) => (
           <span
             key={k}
@@ -169,7 +169,7 @@ function SoftwareVisual({ active }) {
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.5, ease }}
             className="flex items-center gap-2 rounded-xl border border-mint/30 bg-mint/5 px-3 py-2 text-xs"
           >
-            <CheckCircle size={16} weight="fill" className="text-mint" /> Deployed v2.14 · tests passing
+            <CheckCircle size={16} weight="fill" className="text-mintdeep" /> Deployed v2.14 · tests passing
           </motion.div>
         )}
       </AnimatePresence>
@@ -207,10 +207,10 @@ function WebsiteVisual({ active }) {
   return (
     <div className="flex h-full flex-col justify-center gap-5">
       <div className="flex justify-between gap-2">
-        <Ring value={100} label="Performance" color="#12b886" active={active} delay={0} />
-        <Ring value={98} label="Accessibility" color="#12b886" active={active} delay={0.15} />
-        <Ring value={100} label="Best practice" color="#12b886" active={active} delay={0.3} />
-        <Ring value={100} label="SEO" color="#12b886" active={active} delay={0.45} />
+        <Ring value={100} label="Performance" color="#5cc596" active={active} delay={0} />
+        <Ring value={98} label="Accessibility" color="#5cc596" active={active} delay={0.15} />
+        <Ring value={100} label="Best practice" color="#5cc596" active={active} delay={0.3} />
+        <Ring value={100} label="SEO" color="#5cc596" active={active} delay={0.45} />
       </div>
       <div className="flex flex-wrap gap-2">
         {[['LCP', '0.8s'], ['CLS', '0.01'], ['INP', '64ms']].map(([k, v], i) => (
@@ -219,7 +219,7 @@ function WebsiteVisual({ active }) {
             initial={{ opacity: 0, y: 8 }} animate={active ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease, delay: 1 + i * 0.12 }}
             className="rounded-full border border-black/10 bg-white px-3 py-1 font-mono text-xs"
           >
-            {k} <b className="text-mint">{v}</b>
+            {k} <b className="text-mintdeep">{v}</b>
           </motion.span>
         ))}
       </div>
@@ -238,14 +238,14 @@ function SeoVisual({ active }) {
         <svg viewBox="0 0 300 90" preserveAspectRatio="none" className="absolute inset-0 h-full w-full overflow-visible">
           <motion.path
             d="M0 80 C 40 78, 60 70, 90 64 S 140 52, 170 38 S 230 16, 300 8"
-            fill="none" stroke="#2e6bff" strokeWidth="3" strokeLinecap="round" vectorEffect="non-scaling-stroke"
+            fill="none" stroke="#e0699a" strokeWidth="3" strokeLinecap="round" vectorEffect="non-scaling-stroke"
             initial={{ pathLength: 0 }} animate={active ? { pathLength: 1 } : {}} transition={{ duration: 2, ease }}
           />
         </svg>
         <span className="absolute bottom-0 left-0 rounded-md bg-black/5 px-1.5 py-0.5 font-mono text-[11px] text-ink/50">#34</span>
         <motion.span
           initial={{ opacity: 0, scale: 0.6 }} animate={active ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.6, ease, delay: 1.8 }}
-          className="absolute -top-2 right-0 rounded-md bg-blue px-2 py-0.5 font-mono text-xs font-semibold text-white"
+          className="absolute -top-2 right-0 rounded-md bg-sun px-2 py-0.5 font-mono text-xs font-semibold text-ink"
         >
           #2
         </motion.span>
@@ -256,7 +256,7 @@ function SeoVisual({ active }) {
             key={e}
             className={`flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium transition-all duration-700 ease-fluid ${lit > i ? 'bg-ink text-white' : 'bg-black/5 text-ink/55'}`}
           >
-            {lit > i && <CheckCircle size={12} weight="fill" className="text-blue" />} {e}
+            {lit > i && <CheckCircle size={12} weight="fill" className="text-bluedeep" />} {e}
           </span>
         ))}
       </div>
@@ -313,8 +313,8 @@ export default function Services() {
               className="h-full"
               layout="big"
               Icon={SquaresFour}
-              tone="bg-black/[0.05] text-ink"
-              title="STAT6 BMS · coming soon"
+              tone="bg-rose text-pinkdeep"
+              title={<><Brand /> BMS · coming soon</>}
               body="Our own business management system: sales, operations, finance and AI agents in one place. Join the waitlist for early access."
               Visual={BmsVisual}
             />
@@ -324,24 +324,24 @@ export default function Services() {
               className="h-full"
               layout="row"
               Icon={Robot}
-              tone="bg-black/[0.05] text-ink"
+              tone="bg-butter text-sundeep"
               title="AI agents"
               body="Agents that read, decide and act inside your tools, with a human approval step where it matters."
               Visual={AgentVisual}
             />
           </Reveal>
           <Reveal delay={0.12}>
-            <Tile className="h-full" Icon={FlowArrow} tone="bg-black/[0.05] text-ink" title="AI automation and integration" body="Connect your tools and let AI move the work between them." Visual={AutomationVisual} />
+            <Tile className="h-full" Icon={FlowArrow} tone="bg-sky text-bluedeep" title="AI automation and integration" body="Connect your tools and let AI move the work between them." Visual={AutomationVisual} />
           </Reveal>
           <Reveal delay={0.18}>
-            <Tile className="h-full" Icon={Code} tone="bg-black/[0.05] text-ink" title="Custom software" body="Portals, internal tools and SaaS, built around how you work." Visual={SoftwareVisual} />
+            <Tile className="h-full" Icon={Code} tone="bg-mintsoft text-mintdeep" title="Custom software" body="Portals, internal tools and SaaS, built around how you work." Visual={SoftwareVisual} />
           </Reveal>
           <Reveal delay={0.06} className="md:col-span-2">
             <Tile
               className="h-full"
               layout="row"
               Icon={Trophy}
-              tone="bg-black/[0.05] text-ink"
+              tone="bg-lavender text-violetdeep"
               title="Award grade websites"
               body="Design led sites with motion, built on a strict performance budget so they win attention and convert it."
               tags={['Brand', 'Motion', 'CMS', 'Core Web Vitals']}
@@ -353,7 +353,7 @@ export default function Services() {
               className="h-full"
               layout="row"
               Icon={MagnifyingGlass}
-              tone="bg-black/[0.05] text-ink"
+              tone="bg-rose text-pinkdeep"
               title="SEO, GEO and AEO"
               body="Rank on Google and become the source that ChatGPT, Perplexity and AI Overviews cite."
               tags={['Technical SEO', 'Schema', 'Content', 'AI visibility']}

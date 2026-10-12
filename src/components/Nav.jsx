@@ -8,7 +8,8 @@ const links = [
   ['Process', '#process'],
   ['FAQ', '#faq'],
 ]
-const delays = ['delay-100', 'delay-150', 'delay-200', 'delay-300', 'delay-500']
+const delays = ['delay-100', 'delay-150', 'delay-200', 'delay-300', 'delay-500', 'delay-700']
+const INVOICE_URL = 'https://invoice.stat6.si'
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
@@ -45,7 +46,7 @@ export default function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-fluid ${
-        scrolled ? 'border-b border-black/[0.06] bg-paper/80 backdrop-blur-xl' : 'border-b border-transparent'
+        scrolled ? 'border-b border-black/[0.06] bg-white/70 backdrop-blur-xl' : 'border-b border-transparent'
       }`}
     >
       <nav
@@ -72,13 +73,21 @@ export default function Nav() {
         </ul>
         <a
           href="#waitlist"
-          className="hidden items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold text-ink/70 transition-colors duration-700 ease-fluid hover:text-ink lg:inline-flex"
+          className="hidden items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold text-ink/70 transition-colors duration-700 ease-fluid hover:text-ink lg:inline-flex"
         >
           BMS waitlist
         </a>
         <a
+          href={INVOICE_URL}
+          target="_blank"
+          rel="noopener"
+          className="hidden items-center gap-1.5 rounded-full border border-black/10 bg-white/70 px-3.5 py-2 text-sm font-semibold text-ink transition-all duration-700 ease-fluid hover:border-violet hover:bg-lavender active:scale-[0.98] xl:inline-flex"
+        >
+          <span className="size-1.5 rounded-full bg-mint" /> Free invoice generator <ArrowUpRight weight="bold" size={13} />
+        </a>
+        <a
           href="#contact"
-          className="hidden items-center gap-1 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition-all duration-700 ease-fluid hover:bg-blue active:scale-[0.98] sm:inline-flex"
+          className="hidden items-center gap-1 rounded-full bg-pink px-4 py-2 text-sm font-semibold text-ink transition-all duration-700 ease-fluid hover:bg-pinkdeep hover:text-ink active:scale-[0.98] sm:inline-flex"
         >
           Book a call <ArrowUpRight weight="bold" />
         </a>
@@ -108,15 +117,16 @@ export default function Nav() {
         }`}
       >
         <ul className="flex h-full flex-col justify-center gap-2 px-8">
-          {[...links, ['Book a call', '#contact']].map(([label, href], i) => (
+          {[...links, ['Free invoice generator', INVOICE_URL], ['Book a call', '#contact']].map(([label, href], i) => (
             <li key={href} className="overflow-hidden">
               <a
                 href={href}
+                {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})}
                 onClick={() => setOpen(false)}
                 tabIndex={open ? 0 : -1}
-                className={`block py-2 text-5xl font-semibold tracking-tight transition-all duration-700 ease-fluid ${delays[i]} ${
+                className={`block py-2 text-4xl font-semibold tracking-tight transition-all sm:text-5xl duration-700 ease-fluid ${delays[i]} ${
                   open ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
-                } ${href === '#contact' ? 'text-blue' : 'text-ink'}`}
+                } ${href === '#contact' ? 'text-pinkdeep' : 'text-ink'}`}
               >
                 {label}
               </a>

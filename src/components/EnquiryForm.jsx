@@ -7,7 +7,7 @@ import {
   ArrowRight, CheckCircle, WarningCircle, CircleNotch,
 } from '@phosphor-icons/react'
 import { submitForm } from '../lib/submit'
-import { ease } from './ui'
+import { Brand, ease } from './ui'
 
 const services = [
   [Code, 'Custom software'],
@@ -23,7 +23,7 @@ const MAX = 2000
 const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)
 
 const input =
-  'mt-2 w-full rounded-xl border bg-white px-4 py-3 text-base text-ink placeholder:text-ink/35 outline-none transition-all duration-500 ease-fluid focus:border-ink/40 focus:ring-4 focus:ring-black/[0.04]'
+  'mt-2 w-full rounded-xl border bg-white px-4 py-3 text-base text-ink placeholder:text-ink/35 outline-none transition-all duration-500 ease-fluid focus:border-pink focus:ring-4 focus:ring-pink/20'
 
 function Group({ Icon, title }) {
   return (
@@ -56,7 +56,7 @@ function Chip({ selected, onClick, children }) {
       aria-pressed={selected}
       onClick={onClick}
       className={`flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm transition-all duration-500 ease-fluid active:scale-[0.98] ${
-        selected ? 'border-ink bg-ink text-white' : 'border-black/10 bg-white text-ink/75 hover:border-black/30'
+        selected ? 'border-violet bg-lavender text-ink' : 'border-black/10 bg-white text-ink/75 hover:border-black/30'
       }`}
     >
       {children}
@@ -121,24 +121,24 @@ export default function EnquiryForm() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease }}
-        className="flex h-full flex-col items-start justify-center rounded-3xl border border-black/10 bg-paper p-8"
+        className="flex h-full flex-col items-start justify-center rounded-[28px] bg-paper p-8"
       >
-        <CheckCircle size={40} weight="duotone" className="text-mint" />
+        <CheckCircle size={40} weight="duotone" className="text-mintdeep" />
         <h3 className="mt-6 text-3xl font-semibold tracking-tight">Enquiry received</h3>
         <p className="mt-3 text-ink/65">
-          Thanks{v.name ? `, ${v.name.split(' ')[0]}` : ''}. A STAT6 lead will reply to {v.email} within one business day.
+          Thanks{v.name ? `, ${v.name.split(' ')[0]}` : ''}. A <Brand /> lead will reply to {v.email} within one business day.
         </p>
       </motion.div>
     )
   }
 
   return (
-    <form noValidate onSubmit={onSubmit} className="space-y-5 rounded-3xl border border-black/10 bg-paper p-6 md:p-8" aria-busy={status === 'sending'}>
+    <form noValidate onSubmit={onSubmit} className="space-y-5 rounded-[28px] bg-paper p-6 md:p-8" aria-busy={status === 'sending'}>
       {/* progress */}
       <div className="flex items-center gap-3 text-xs text-ink/55">
         Form progress
         <span className="h-1 flex-1 overflow-hidden rounded-full bg-black/10">
-          <motion.span className="block h-full rounded-full bg-ink" animate={{ width: `${progress}%` }} transition={{ duration: 0.5, ease }} />
+          <motion.span className="block h-full rounded-full bg-linear-to-r from-pink via-violet to-blue" animate={{ width: `${progress}%` }} transition={{ duration: 0.5, ease }} />
         </span>
         <span className="w-9 text-right font-medium tabular-nums text-ink">{progress}%</span>
       </div>
@@ -168,7 +168,7 @@ export default function EnquiryForm() {
         <div className="mt-2 flex flex-wrap gap-2">
           {services.map(([Icon, s]) => (
             <Chip key={s} selected={v.services.includes(s)} onClick={() => toggleService(s)}>
-              <Icon size={15} /> {s}
+              <Icon size={15} /> {s.startsWith('STAT6') ? <><Brand />{s.slice(5)}</> : s}
             </Chip>
           ))}
         </div>
@@ -214,9 +214,9 @@ export default function EnquiryForm() {
       </div>
 
       <label className="flex items-start gap-3 text-sm text-ink/65">
-        <input name="consent" type="checkbox" checked={v.consent} onChange={set('consent')} className="mt-0.5 size-4 shrink-0 accent-[#131209]" />
+        <input name="consent" type="checkbox" checked={v.consent} onChange={set('consent')} className="mt-0.5 size-4 shrink-0 accent-[#a98af0]" />
         <span>
-          I agree that STAT6 may contact me about this enquiry, as described in the{' '}
+          I agree that <Brand /> may contact me about this enquiry, as described in the{' '}
           <a href="/privacy.html" className="font-medium text-ink underline underline-offset-2">privacy policy</a>.
         </span>
       </label>
@@ -237,12 +237,12 @@ export default function EnquiryForm() {
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-ink py-3.5 text-base font-semibold text-white transition-all duration-500 ease-fluid hover:bg-black active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-pink py-3.5 text-base font-semibold text-ink transition-all duration-500 ease-fluid hover:bg-pinkdeep hover:text-ink active:scale-[0.99] disabled:cursor-wait disabled:opacity-70"
       >
         {status === 'sending' ? (
           <><CircleNotch size={18} className="animate-spin" /> Sending</>
         ) : (
-          <>Send enquiry <span className="grid size-6 place-items-center rounded-full bg-white/15"><ArrowRight size={14} weight="bold" /></span></>
+          <>Send enquiry <span className="grid size-6 place-items-center rounded-full bg-white/50"><ArrowRight size={14} weight="bold" /></span></>
         )}
       </button>
       <p className="text-center text-xs text-ink/50">Protected by a spam filter. We never share your details.</p>

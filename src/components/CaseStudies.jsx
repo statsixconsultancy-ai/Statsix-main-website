@@ -12,7 +12,7 @@ const storyLabels = ['What we did', 'What we changed', 'The result']
 const cases = [
   {
     client: 'Harbourline Logistics',
-    tone: '#2e6bff',
+    tone: '#ef8fb4',
     sector: 'Freight · 340 staff',
     service: 'Business management system',
     headline: 'Custom operations software',
@@ -29,7 +29,7 @@ const cases = [
   },
   {
     client: 'Verdant Clinics',
-    tone: '#12b886',
+    tone: '#6fcf9f',
     sector: 'Healthcare · 12 sites',
     service: 'AI agent',
     headline: 'AI intake and booking agent',
@@ -46,7 +46,7 @@ const cases = [
   },
   {
     client: 'Monarch & Reed',
-    tone: '#8b5cf6',
+    tone: '#b69af0',
     sector: 'Law · 3 offices',
     service: 'Award grade website',
     headline: 'Brand and website design',
@@ -63,7 +63,7 @@ const cases = [
   },
   {
     client: 'Kiln Supply Co.',
-    tone: '#ff6a3d',
+    tone: '#f6d365',
     sector: 'Ecommerce · DTC',
     service: 'SEO, GEO and AEO',
     headline: 'SEO, GEO and AI search visibility',
@@ -90,7 +90,7 @@ function Pin({ step, at }) {
       transition={{ duration: 0.9, ease }}
       style={{ x: '-50%', y: '-50%' }}
     >
-      <span className="absolute inset-0 -m-2 animate-ping rounded-full bg-ink/20" style={{ animationDuration: '1.8s' }} />
+      <span className="absolute inset-0 -m-2 animate-ping rounded-full bg-violet/40" style={{ animationDuration: '1.8s' }} />
       <motion.span
         key={step}
         initial={{ scale: 0.4, opacity: 0 }}
@@ -159,7 +159,7 @@ function CaseCard({ c, i, total, progress }) {
       <div className="sticky top-0 flex min-h-screen items-center py-20">
         <motion.article
           style={{ scale, top: `${i * 24}px` }}
-          className="relative w-full origin-top overflow-hidden rounded-[2rem] border border-black/10 bg-white p-6 md:p-10"
+          className="relative w-full origin-top overflow-hidden rounded-[32px] card-soft p-6 md:p-10"
         >
           <motion.div aria-hidden style={{ opacity: dim }} className="pointer-events-none absolute inset-0 z-30 bg-black" />
           <div className="grid items-center gap-10 lg:grid-cols-12">
@@ -214,7 +214,7 @@ export default function CaseStudies() {
           <Reveal>
             <Eyebrow tone={1}>Selected work</Eyebrow>
             <h2 className="mt-6 max-w-2xl text-4xl font-semibold tracking-tight md:text-6xl">
-              Proof, not <span className="font-serif text-blue">promises</span>
+              Proof, not <span className="font-serif text-pinkdeep">promises</span>
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="max-w-sm text-ink/60">

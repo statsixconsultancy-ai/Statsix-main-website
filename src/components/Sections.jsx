@@ -6,7 +6,7 @@ import {
 } from '@phosphor-icons/react'
 import { BrandMark } from './Logos'
 import EnquiryForm from './EnquiryForm'
-import { Eyebrow, Reveal, SpotlightCard, CountUp, VelocityText, Magnet, btnPrimary, ease } from './ui'
+import { Eyebrow, Reveal, Brand, SpotlightCard, CountUp, VelocityText, Magnet, btnPrimary, ease } from './ui'
 
 /* ---------- Client strip ---------- */
 const clients = [['harbourline', 'Harbourline'], ['verdant', 'Verdant Clinics'], ['monarch', 'Monarch & Reed'], ['kiln', 'Kiln Supply Co.'], ['northpaw', 'Northpaw'], ['lumen', 'Lumen Rail']]
@@ -14,7 +14,7 @@ const clients = [['harbourline', 'Harbourline'], ['verdant', 'Verdant Clinics'],
 export function ClientStrip() {
   return (
     <section aria-label="Clients" className="border-y border-black/5 py-10">
-      <p className="mb-6 text-center text-sm text-ink/55">Operators who run on STAT6</p>
+      <p className="mb-6 text-center text-sm text-ink/55">Operators who run on <Brand /></p>
       <div className="marquee-mask overflow-hidden">
         <div className="animate-marquee flex w-max gap-16 pr-16" style={{ '--marquee-speed': '45s' }}>
           {[...clients, ...clients, ...clients, ...clients].map(([b, c], i) => (
@@ -49,7 +49,7 @@ export function FAQ() {
           <Eyebrow tone={4}>FAQ</Eyebrow>
           <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">Straight answers</h2>
           <p className="mt-6 text-ink/60">
-            Something else on your mind? <a href="#contact" className="font-medium text-blue underline-offset-4 hover:underline">Ask us directly</a>.
+            Something else on your mind? <a href="#contact" className="font-medium text-violetdeep underline-offset-4 hover:underline">Ask us directly</a>.
           </p>
         </Reveal>
         <div className="space-y-3 lg:col-span-8">
@@ -57,7 +57,7 @@ export function FAQ() {
             const isOpen = open === i
             return (
               <Reveal key={q} delay={i * 0.04} amount={0.6}>
-                <div className={`rounded-2xl border transition-all duration-700 ease-fluid ${isOpen ? 'border-black/20 bg-white' : 'border-black/10 hover:bg-black/[0.03]'}`}>
+                <div className={`rounded-2xl border transition-all duration-700 ease-fluid ${isOpen ? 'card-soft' : 'border-black/[0.06] bg-white/60 hover:bg-white'}`}>
                   <h3>
                     <button
                       type="button"
@@ -66,7 +66,7 @@ export function FAQ() {
                       className="flex w-full items-center justify-between gap-6 p-6 text-left text-lg font-medium"
                     >
                       {q}
-                      <Plus size={20} className={`shrink-0 text-blue transition-transform duration-700 ease-fluid ${isOpen ? 'rotate-45' : ''}`} />
+                      <Plus size={20} className={`shrink-0 text-violetdeep transition-transform duration-700 ease-fluid ${isOpen ? 'rotate-45' : ''}`} />
                     </button>
                   </h3>
                   <AnimatePresence initial={false}>
@@ -96,7 +96,7 @@ export function FAQ() {
 export function Contact() {
   return (
     <section id="contact" className="px-4 py-24 md:px-8 md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-10 rounded-[2rem] border border-black/10 bg-white p-6 md:p-12 lg:grid-cols-12 lg:gap-14">
+      <div className="mx-auto grid max-w-7xl gap-10 rounded-[32px] card-soft p-6 md:p-12 lg:grid-cols-12 lg:gap-14">
         <Reveal className="lg:col-span-5">
           <Eyebrow>Start a project</Eyebrow>
           <h2 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
@@ -108,7 +108,7 @@ export function Contact() {
           </p>
           <ul className="mt-8 space-y-3 text-ink/70">
             {['Fixed price after mapping, never hourly', 'You own all code and IP', 'Reply within one business day'].map((t) => (
-              <li key={t} className="flex items-center gap-3"><CheckCircle weight="fill" className="text-mint" /> {t}</li>
+              <li key={t} className="flex items-center gap-3"><CheckCircle weight="fill" className="text-mintdeep" /> {t}</li>
             ))}
           </ul>
           <p className="mt-8 text-sm text-ink/55">
@@ -134,7 +134,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
           <p className="max-w-sm text-ink/60">
-            STAT6 builds business management systems, AI agents and websites for companies that are ready to stop patching.
+            <Brand /> builds business management systems, AI agents and websites for companies that are ready to stop patching.
           </p>
           <a href="mailto:aaru@statsix.com" className="mt-4 inline-block text-sm font-medium text-ink/70 transition-colors duration-700 ease-fluid hover:text-ink">
             aaru@statsix.com
@@ -142,8 +142,8 @@ export function Footer() {
         </div>
         <nav aria-label="Footer" className="grid grid-cols-2 gap-8 text-sm md:col-span-2">
           <ul className="space-y-3 text-ink/60">
-            {[['Services', '#services'], ['Work', '#work'], ['Process', '#process'], ['FAQ', '#faq']].map(([l, h]) => (
-              <li key={h}><a href={h} className="transition-colors duration-700 ease-fluid hover:text-ink">{l}</a></li>
+            {[['Services', '#services'], ['Work', '#work'], ['Process', '#process'], ['FAQ', '#faq'], ['Free invoice generator', 'https://invoice.stat6.si']].map(([l, h]) => (
+              <li key={h}><a href={h} {...(h.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {})} className="transition-colors duration-700 ease-fluid hover:text-ink">{l}</a></li>
             ))}
           </ul>
           <ul className="space-y-3 text-ink/60">
@@ -153,7 +153,7 @@ export function Footer() {
         </nav>
       </div>
       <div className="mx-auto mt-16 flex max-w-7xl justify-between border-t border-black/5 py-6 text-xs text-ink/55">
-        <span>© 2026 STAT6. All rights reserved.</span>
+        <span>© 2026 <Brand />. All rights reserved.</span>
         <a href="#top" className="hover:text-ink">Back to top ↑</a>
       </div>
       <motion.img

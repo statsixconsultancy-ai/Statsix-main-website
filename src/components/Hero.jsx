@@ -4,7 +4,7 @@ import {
   ArrowUpRight, ArrowRight, EnvelopeSimple, Robot, Database, UsersThree, Receipt, CheckCircle, CircleNotch,
   Star, Lightning, ShieldCheck, WarningCircle,
 } from '@phosphor-icons/react'
-import { Magnet, Eyebrow, ease } from './ui'
+import { Magnet, Eyebrow, Brand, ease } from './ui'
 import { Dashboard } from './Dashboard'
 import { submitForm } from '../lib/submit'
 
@@ -45,7 +45,7 @@ function Node({ on, done, className, label, Icon, tone, children }) {
         {label}
         <span className="ml-auto">
           {on && !done && <CircleNotch size={14} className="animate-spin text-ink/55" />}
-          {done && <CheckCircle size={14} weight="fill" className="text-mint" />}
+          {done && <CheckCircle size={14} weight="fill" className="text-mintdeep" />}
         </span>
       </div>
       <div className="mt-2">{children}</div>
@@ -86,14 +86,15 @@ function BuildCanvas() {
 
   return (
     <div className="relative">
-      <div className="overflow-hidden rounded-3xl border border-black/10 bg-white shadow-[0_40px_80px_-40px_rgba(19,18,9,0.35)]">
+      <div aria-hidden className="halo"><span style={{ top: "-10%", left: "-8%", width: "55%", height: "55%", background: "#fbcfe0" }} /><span style={{ top: "-6%", right: "-6%", width: "45%", height: "45%", background: "#fdeaa8" }} /><span style={{ bottom: "-10%", left: "10%", width: "50%", height: "50%", background: "#cfe3fb" }} /><span style={{ bottom: "-8%", right: "-4%", width: "45%", height: "45%", background: "#c6efd8" }} /><span style={{ top: "30%", left: "35%", width: "35%", height: "35%", background: "#e1d6fb" }} /></div>
+      <div className="overflow-hidden rounded-[28px] card-soft">
         {/* window chrome */}
         <div className="flex items-center gap-3 border-b border-black/[0.06] px-4 py-3">
           <span className="flex gap-1.5">
             <span className="size-2.5 rounded-full bg-black/10" /><span className="size-2.5 rounded-full bg-black/10" /><span className="size-2.5 rounded-full bg-black/10" />
           </span>
           <span className="font-mono text-xs text-ink/50">order-intake.workflow</span>
-          <span className="ml-auto flex items-center gap-1.5 rounded-full bg-mint/10 px-2 py-0.5 text-[11px] font-medium text-mint">
+          <span className="ml-auto flex items-center gap-1.5 rounded-full bg-mint/10 px-2 py-0.5 text-[11px] font-medium text-mintdeep">
             <span className="relative flex size-1.5">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-mint opacity-60" />
               <span className="relative size-1.5 rounded-full bg-mint" />
@@ -108,19 +109,19 @@ function BuildCanvas() {
           style={{ backgroundImage: 'radial-gradient(rgba(19,18,9,0.09) 1px, transparent 1px)', backgroundSize: '18px 18px', backgroundColor: '#fbfaf7' }}
         >
           <svg className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <Wire d="M45 17 C 50 17, 50 17, 54 17" live={t >= 1} color="#2e6bff" />
-            <Wire d="M76 50 C 76 52, 76 53, 76 55" live={t >= 5} color="#2e6bff" />
-            <Wire d="M54 72 C 51 72, 51 70, 47 70" live={t >= 9} color="#2e6bff" />
+            <Wire d="M45 17 C 50 17, 50 17, 54 17" live={t >= 1} color="#ef8fb4" />
+            <Wire d="M76 50 C 76 52, 76 53, 76 55" live={t >= 5} color="#f6d365" />
+            <Wire d="M54 72 C 51 72, 51 70, 47 70" live={t >= 9} color="#6fcf9f" />
           </svg>
 
           {/* 1. trigger */}
-          <Node on={t >= 0} done={t >= 1} className="sm:left-[3%] sm:top-[5%] sm:w-[42%]" label="Trigger · new email" Icon={EnvelopeSimple} tone="bg-blue/10 text-blue">
+          <Node on={t >= 0} done={t >= 1} className="sm:left-[3%] sm:top-[5%] sm:w-[42%]" label="Trigger · new email" Icon={EnvelopeSimple} tone="bg-rose text-pinkdeep">
             <p className="truncate text-xs font-semibold">PO-7714 from Coastline Freight</p>
             <p className="mt-0.5 truncate text-[11px] text-ink/55">orders@coastlinefreight.com · 2 attachments</p>
           </Node>
 
           {/* 2. AI agent */}
-          <Node on={t >= 1} done={t >= 5} className="sm:left-[54%] sm:top-[5%] sm:w-[43%]" label="AI agent · read and extract" Icon={Robot} tone="bg-blue/10 text-blue">
+          <Node on={t >= 1} done={t >= 5} className="sm:left-[54%] sm:top-[5%] sm:w-[43%]" label="AI agent · read and extract" Icon={Robot} tone="bg-butter text-sundeep">
             <div className="space-y-1">
               {fields.map(([k, v], i) => (
                 <div key={k} className="flex items-center justify-between gap-2 rounded-md bg-black/[0.03] px-2 py-1 text-[11px]">
@@ -136,7 +137,7 @@ function BuildCanvas() {
           </Node>
 
           {/* 3. integrations */}
-          <Node on={t >= 5} done={t >= 9} className="sm:left-[54%] sm:top-[55%] sm:w-[43%]" label="Integrations" Icon={Lightning} tone="bg-blue/10 text-blue">
+          <Node on={t >= 5} done={t >= 9} className="sm:left-[54%] sm:top-[55%] sm:w-[43%]" label="Integrations" Icon={Lightning} tone="bg-lavender text-violetdeep">
             <div className="space-y-1">
               {systems.map(([Icon, name, result], i) => (
                 <div key={name} className={`flex items-center gap-2 rounded-md px-2 py-1 text-[11px] transition-colors duration-500 ${checks > i ? 'bg-mint/10' : 'bg-black/[0.03]'}`}>
@@ -149,7 +150,7 @@ function BuildCanvas() {
           </Node>
 
           {/* 4. the client's custom app */}
-          <Node on={t >= 9} done={landed} className="sm:left-[3%] sm:top-[44%] sm:w-[44%]" label="Your app · Orders" Icon={ShieldCheck} tone="bg-blue text-white">
+          <Node on={t >= 9} done={landed} className="sm:left-[3%] sm:top-[44%] sm:w-[44%]" label="Your app · Orders" Icon={ShieldCheck} tone="bg-mintsoft text-mintdeep">
             <div className="overflow-hidden rounded-lg border border-black/[0.06]">
               <AnimatePresence initial={false}>
                 {landed && (
@@ -161,10 +162,10 @@ function BuildCanvas() {
                     transition={{ duration: 0.6, ease }}
                     className="overflow-hidden"
                   >
-                    <div className="flex items-center gap-2 bg-blue/10 px-2 py-1.5 text-[11px]">
+                    <div className="flex items-center gap-2 bg-pink/10 px-2 py-1.5 text-[11px]">
                       <span className="font-semibold">Coastline Freight</span>
                       <span className="ml-auto font-mono">$4,212.80</span>
-                      <span className="rounded-full bg-ink px-1.5 py-0.5 text-[10px] font-semibold text-white">Ready</span>
+                      <span className="rounded-full bg-pink px-1.5 py-0.5 text-[10px] font-semibold text-ink">Ready</span>
                     </div>
                   </motion.div>
                 )}
@@ -196,7 +197,7 @@ function BuildCanvas() {
         transition={{ duration: 1, ease, delay: 1.4 }}
         className="absolute -bottom-16 left-6 hidden rounded-2xl border border-black/[0.07] bg-white px-4 py-3 shadow-[0_20px_40px_-20px_rgba(19,18,9,0.35)] md:block"
       >
-        <p className="text-[11px] text-ink/55">Before STAT6</p>
+        <p className="text-[11px] text-ink/55">Before <Brand /></p>
         <p className="text-sm"><span className="font-semibold">22 minutes</span> of copy and paste per order</p>
       </motion.div>
     </div>
@@ -215,11 +216,11 @@ export const faces = [
 ]
 
 const offer = [
-  ['Custom software', 'bg-ink/30'],
-  ['AI agents', 'bg-ink/30'],
-  ['AI automation', 'bg-ink/30'],
-  ['AI integration', 'bg-ink/30'],
-  ['Websites', 'bg-ink/30'],
+  ['Custom software', 'bg-pink'],
+  ['AI agents', 'bg-blue'],
+  ['AI automation', 'bg-violet'],
+  ['AI integration', 'bg-mint'],
+  ['Websites', 'bg-sun'],
 ]
 
 export default function Hero() {
@@ -250,7 +251,7 @@ export default function Hero() {
             transition={{ duration: 0.9, ease }}
             className="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-white py-1 pl-1 pr-3 text-sm text-ink/70 transition-all duration-700 ease-fluid hover:border-black/20"
           >
-            <span className="flex items-center gap-1.5 rounded-full bg-paper px-2 py-0.5 text-xs font-semibold whitespace-nowrap text-ink"><span className="size-1.5 rounded-full bg-mint" />STAT6 BMS</span>
+            <span className="flex items-center gap-1.5 rounded-full bg-paper px-2 py-0.5 text-xs font-semibold whitespace-nowrap text-ink"><span className="size-1.5 rounded-full bg-mint" /><Brand /> BMS</span>
             <span className="whitespace-nowrap"><span className="hidden sm:inline">Launching soon · </span>Join the waitlist</span>
             <ArrowRight size={14} className="transition-transform duration-700 ease-fluid group-hover:translate-x-1" />
           </motion.a>
@@ -258,8 +259,8 @@ export default function Hero() {
           <h1 className="mt-8 font-display text-4xl font-medium leading-[1.05] tracking-[-0.04em] sm:text-5xl xl:text-6xl">
             {[
               ['Custom software and AI agents'],
-              ['that ', <span key="x" className="font-serif text-[1.12em] text-blue">10×</span>, ' your revenue'],
-              ['in ', <span key="t" className="font-serif text-[1.12em]">less time.</span>],
+              ['that ', <span key="x" className="text-pinkdeep">10×</span>, ' your revenue'],
+              ['in ', <span key="t" className="text-bluedeep">less time.</span>],
             ].map((line, i) => (
               <span key={i} className="block overflow-hidden pb-[0.08em]">
                 <motion.span
@@ -280,7 +281,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease, delay: 0.4 }}
           >
-            STAT6 is a software studio. We design and build the custom software your business runs on, then connect AI
+            <Brand /> is a software studio. We design and build the custom software your business runs on, then connect AI
             agents, automation and integrations so the busywork runs itself. And we build the website that brings the
             customers in.
           </motion.p>
@@ -311,7 +312,7 @@ export default function Hero() {
             <Magnet>
               <a
                 href="#contact"
-                className="group inline-flex items-center gap-3 rounded-full bg-ink py-2 pl-6 pr-2 text-base font-semibold text-white transition-all duration-700 ease-fluid hover:scale-[1.03] active:scale-[0.98]"
+                className="group inline-flex items-center gap-3 rounded-full bg-pink py-2 pl-6 pr-2 text-base font-semibold text-ink shadow-[0_14px_32px_-12px_rgba(240,143,180,0.8)] transition-all duration-700 ease-fluid hover:bg-pinkhover hover:scale-[1.03] active:scale-[0.98]"
               >
                 Book a strategy call
                 <span className="grid size-9 place-items-center rounded-full bg-white text-ink transition-transform duration-700 ease-fluid group-hover:rotate-45">
@@ -391,7 +392,7 @@ function WaitlistForm() {
   }
   if (status === 'done') {
     return (
-      <p className="mx-auto flex w-max max-w-full items-center justify-center gap-2 rounded-full bg-mint/10 px-5 py-3 text-sm font-medium text-mint">
+      <p className="mx-auto flex w-max max-w-full items-center justify-center gap-2 rounded-full bg-mint/10 px-5 py-3 text-sm font-medium text-mintdeep">
         <CheckCircle weight="fill" size={18} /> You are on the list{name ? `, ${name}` : ''}. We will email you before launch.
       </p>
     )
@@ -399,13 +400,13 @@ function WaitlistForm() {
   const field = 'min-w-0 flex-1 rounded-full bg-transparent px-4 py-2.5 text-base outline-none placeholder:text-ink/35'
   return (
     <form noValidate onSubmit={onSubmit} className="mx-auto w-full max-w-xl">
-      <div className={`flex flex-col gap-1.5 rounded-3xl border bg-white p-1.5 transition-colors duration-700 ease-fluid focus-within:border-ink/40 sm:flex-row sm:items-center sm:rounded-full ${error ? 'border-red-400' : 'border-black/10'}`}>
+      <div className={`flex flex-col gap-1.5 rounded-3xl border bg-white p-1.5 transition-colors duration-700 ease-fluid focus-within:border-pink sm:flex-row sm:items-center sm:rounded-full ${error ? 'border-red-400' : 'border-black/10'}`}>
         <label htmlFor="waitlist-name" className="sr-only">Your name</label>
         <input id="waitlist-name" name="name" autoComplete="name" placeholder="Your name" className={field} />
         <span aria-hidden className="hidden h-6 w-px bg-black/10 sm:block" />
         <label htmlFor="waitlist-email" className="sr-only">Work email</label>
         <input id="waitlist-email" name="email" type="email" autoComplete="email" placeholder="you@company.com" aria-invalid={!!error} className={field} />
-        <button type="submit" disabled={status === 'loading'} className="shrink-0 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-all duration-700 ease-fluid hover:bg-blue active:scale-[0.98] disabled:opacity-70">
+        <button type="submit" disabled={status === 'loading'} className="shrink-0 rounded-full bg-pink px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-700 ease-fluid hover:bg-pinkdeep hover:text-ink active:scale-[0.98] disabled:opacity-70">
           {status === 'loading' ? 'Joining…' : 'Join the waitlist'}
         </button>
       </div>
@@ -428,7 +429,7 @@ export function ProductReveal() {
       <div className="mx-auto max-w-3xl text-center">
         <Eyebrow tone={5}>Coming soon</Eyebrow>
         <h2 className="mt-6 text-4xl font-semibold md:text-6xl">
-          A first look at <span className="font-serif text-blue">STAT6 BMS</span>
+          A first look at <Brand className="text-violetdeep">STAT6</Brand> <span className="font-serif text-violetdeep">BMS</span>
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-ink/60">
           Everything we have learned building custom systems, packaged into one business management system. Sales,
@@ -440,26 +441,26 @@ export function ProductReveal() {
 
       <div ref={dash} className="relative mx-auto mt-20 max-w-5xl" style={{ perspective: 1600 }}>
         <motion.div style={{ rotateX: tilt, scale, transformOrigin: 'center top' }} className="relative">
-          <div className="rounded-3xl border border-black/10 bg-white p-2 shadow-[0_50px_100px_-30px_rgba(19,18,9,0.3)]">
+          <div className="rounded-[28px] card-soft p-2">
             <Dashboard />
           </div>
-          <span className="absolute -top-3 left-6 rounded-full bg-ink px-3 py-1 text-xs font-semibold text-white shadow-sm">Preview build</span>
+          <span className="absolute -top-3 left-6 rounded-full bg-pink px-3 py-1 text-xs font-semibold text-ink shadow-sm">Preview build</span>
         </motion.div>
 
         <motion.div style={{ y: popA }} className="absolute -left-16 top-[22%] z-20 hidden w-56 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_30px_60px_-20px_rgba(19,18,9,0.35)] lg:block">
-          <p className="flex items-center gap-2 text-xs text-ink/50"><span className="size-2 rounded-full bg-blue" /> Cash runway</p>
+          <p className="flex items-center gap-2 text-xs text-ink/50"><span className="size-2 rounded-full bg-sun" /> Cash runway</p>
           <p className="mt-2 font-display text-3xl font-semibold tracking-tight">19.4 mo</p>
           <div className="mt-3 flex h-8 items-end gap-1">
             {[30, 42, 38, 55, 61, 58, 72, 80].map((h, i) => (
-              <motion.span key={i} className="flex-1 rounded-sm bg-blue/80" initial={{ height: 0 }} whileInView={{ height: `${h}%` }} viewport={{ once: true }} transition={{ duration: 0.9, ease, delay: i * 0.06 }} />
+              <motion.span key={i} className="flex-1 rounded-sm bg-sun/90" initial={{ height: 0 }} whileInView={{ height: `${h}%` }} viewport={{ once: true }} transition={{ duration: 0.9, ease, delay: i * 0.06 }} />
             ))}
           </div>
         </motion.div>
         <motion.div style={{ y: popB }} className="absolute -right-14 top-[48%] z-20 hidden w-64 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_30px_60px_-20px_rgba(19,18,9,0.35)] lg:block">
-          <p className="flex items-center gap-2 text-xs text-ink/50"><Robot size={14} weight="fill" className="text-blue" /> Agent asked for approval</p>
+          <p className="flex items-center gap-2 text-xs text-ink/50"><Robot size={14} weight="fill" className="text-violetdeep" /> Agent asked for approval</p>
           <p className="mt-2 text-sm font-medium">Pay Coastline Freight $4,212.80?</p>
           <div className="mt-3 flex gap-2">
-            <span className="flex-1 rounded-lg bg-ink py-1.5 text-center text-xs font-semibold text-white">Approve</span>
+            <span className="flex-1 rounded-lg bg-pink py-1.5 text-center text-xs font-semibold text-ink">Approve</span>
             <span className="flex-1 rounded-lg border border-black/10 py-1.5 text-center text-xs">Review</span>
           </div>
         </motion.div>
