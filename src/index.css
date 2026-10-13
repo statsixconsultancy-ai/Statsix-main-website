@@ -5,6 +5,7 @@
   --font-mono: "Geist Mono", ui-monospace, monospace;
   --font-display: "General Sans", "Geist", ui-sans-serif, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-hand: "Caveat", "Segoe Print", cursive;
   --font-brand: "Barlow Semi Condensed", "Arial Narrow", sans-serif;
   --color-paper: #f6f7fb;
   --color-coral: #fbcfe0;
@@ -33,7 +34,7 @@
   --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-html { background: #ffffff; color-scheme: light; }
+html { background: #ffffff; color-scheme: light; overflow-x: clip; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }

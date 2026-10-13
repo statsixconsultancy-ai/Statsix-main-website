@@ -203,7 +203,7 @@ export default function InvoiceTool() {
   }, [inView])
 
   return (
-    <section id="invoice" aria-labelledby="invoice-heading" className="relative px-4 py-24 md:px-8 md:py-32">
+    <section id="invoice" aria-labelledby="invoice-heading" className="relative overflow-x-clip px-4 py-24 md:px-8 md:py-32">
       <div ref={ref} className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-12">
         <Reveal className="lg:col-span-5">
           <Eyebrow tone={1}>Free tool</Eyebrow>
